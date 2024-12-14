@@ -84,26 +84,44 @@
             @endforelse
 
             <div class="text-end mt-3">
-                <a href="{{ route('addAddress') }}" class="btn btn-sm btn-success">Add New Address</a>
+                <a href="{{ route('addAddress') }}" class="btn btn-sm btn-primary">Add New Address</a>
             </div>
         </div>
     </div>
 
-<div class=" w-75 container my-5 bg-black rounded-4 p-4">
-    <h3>Delete Your Profile</h3>
+    <div class=" w-75 container my-5 bg-black rounded-4 p-4">
+        <h3>Change Password</h3>
+        <form action="{{ route('changePassword') }}" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label for="password" class="form-label">New Password</label>
+                <input type="password" name="password" id="password" class="form-control" required>
+            </div>
 
-    {{-- <form action="" method="POST" --}}
-<form action="{{ route('deleteProfile', $user->id) }}" method="POST"
-    onsubmit="return confirm('Are you sure you want to delete your profile? This action is irreversible.');">
-    @csrf
-    @method('DELETE')
+            <div class="mb-3">
+                <label for="confirm_password" class="form-label">Confirm New Password</label>
+                <input type="password" name="confirm_password" id="confirm_password" class="form-control" required>
+            </div>
 
-    <div class="alert alert-warning">
-        <strong>Warning!</strong> Deleting your profile is permanent and cannot be undone.
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary">Change Password</button>
+            </div>
+        </form>
     </div>
+    <div class=" w-75 container my-5 bg-black rounded-4 p-4">
+        <h3>Delete Your Profile</h3>
 
-    <button type="submit" class="btn btn-danger">Delete Profile</button>
-</form>
-</div>
+        {{-- <form action="" method="POST" --}}
+        <form action="{{ route('deleteProfile', $user->id) }}" method="POST"
+            onsubmit="return confirm('Are you sure you want to delete your profile? This action is irreversible.');">
+            @csrf
+            @method('DELETE')
+
+            <div class="alert alert-warning">
+                <strong>Warning!</strong> Deleting your profile is permanent and cannot be undone.
+            </div>
+
+            <button type="submit" class="btn btn-danger">Delete Profile</button>
+        </form>
+    </div>
 @endsection
-

@@ -68,7 +68,39 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ### About project 
 ## Home
-contains product list , categorised by category, random 3 category are shown every time page is refreshed
+contains product list , categorised by category, random 3 category are shown every time page is refreshed, search box search.
+## filter page
+in this page side filter contain options 
+pric 
+category 
+and 
+brand
+
+after selecting them and hiting filter, the filteres product are listed
+
+view all , and categories listed in home also redirect to filter where related product are listed and selexted filter option
+
+## Add to cart
+
+Add to cat butten on product card from anywhere add product to cart
+
+## Cart
+
+cart button  on the nev bar opens cart page , where cart items are listed, tou can delete them  , purchease button dosnt work
+
+## profile 
+
+LOGIN and Sign IN with laravel remember me function are addded to the project ,
+
+from nev menu we can acces login and from login we can access sign up,
+
+form nev bar after sin in , a profile option is added which is dropdown from bootstrap with option profile and log out
+
+profile contain user info , from here you can ad Addresseses , change user info and delete account
+
+
+
+
 
 
 

@@ -3,9 +3,12 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+
+
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -24,6 +27,8 @@ Route::get('/filter', [HomeController::class, 'filter'])->name('vueall');
 Route::middleware(['auth'])->group(function () {
     Route::get("/logout", [LoginController::class, 'logout'])->name('logout');
     Route::get('add/cart/{id}',[CartController::class,"store"])->name("AddToCart");
+    Route::post('/change-password', [ChangePasswordController::class, 'change'])->name('changePassword');
+
     Route::get('cart',[CartController::class,"index"])->name("cart");
     Route::get('cart/delete/{cart}',[CartController::class,"delete"])->name("cartDelete");
     Route::get('profile',[ProfileController::class,"index"])->name("profile");
