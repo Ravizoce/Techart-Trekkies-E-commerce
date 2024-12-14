@@ -16,8 +16,9 @@
                                     'butn' => [
                                         'name' => $category->name,
                                         'class' => 'bg-transparent',
-                                        'Filter' => $category
+                                        
                                     ],
+                                    'filter' => $category
                                 ])
                             </div>
                         @empty

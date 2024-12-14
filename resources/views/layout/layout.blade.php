@@ -14,12 +14,14 @@
 <body class="bg-dark text-light">
     <div class="flex  justify-center"></div>
     <!-- Nav -->
-    <nav class="row row-cols-2 w-100 p-3 navigation">
-        <div class="logo w-auto h-auto col">
-            <img class="" src="{{ url('/image/logo.png') }}" alt="Image"
-                style="max-height: 50px; object-fit: contain;" />
+    <nav class="d-flex justify-content-around w-100 p-3 navigation">
+        <div class="logo w-25 h-auto d-flex justify-content-center">
+            <a class="text-decoration-none cursor-pointer" href="{{route('home')}}">
+                <img class="" src="{{ url('/image/logo.png') }}" alt="Image"
+                    style="max-height: 50px; object-fit: contain;" />
+            </a>
         </div>
-        <nav class="flex-grow-1 items-center col">
+        <nav class="flex-grow-1 items-center">
             @include('nav/nav')
         </nav>
     </nav>

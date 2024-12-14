@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger("category_id")->nullable();
             $table->string("slug")->unique();
             $table->integer("price");
-            $table->string("brand");
+            $table->unsignedBigInteger("brand_id")->nullable();
             $table->string("stock_quantity");
             $table->string("image_url");
             $table->string("volume")->nullable();
@@ -27,6 +27,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign("category_id")->references("id")->on("categories")->nullOnDelete();
+            $table->foreign("brand_id")->references("id")->on("brands")->nullOnDelete();
         });
     }
 

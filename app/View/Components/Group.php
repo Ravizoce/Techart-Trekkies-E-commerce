@@ -22,9 +22,9 @@ class Group extends Component
         $this->category = $category;
     }
 
-    public function category()
+    public function categories()
     {
-        return $this->category->load('products');
+        return $this->category->load('product');
     }
     public function render(): View|Closure|string
     {

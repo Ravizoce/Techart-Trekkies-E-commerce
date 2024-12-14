@@ -14,12 +14,17 @@ use Illuminate\Support\Facades\Hash;
 class RegisterController extends Controller
 {
     //
+    public function index()
+    {
+        return view('Auth/register');
+    }
     public function store(Request $request)
     {
         $request->validate([
             "name" => "required",
             "email" => "required|unique:" . User::class,
-            "password" => "required|min:8|max:16"
+            "password" => "required|min:8|max:16",
+            "confirm_password" => "required|same:password"
         ]);
 
         try {
@@ -29,25 +34,24 @@ class RegisterController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-                'remember' => $request->remember
+                'remember' => $request->remember,
+                'role'=>'user'
             ]);
 
+            DB::commit();
             Auth::login($user);
 
-            if(Auth::user()->role == UserType::User){
-                return redirect()->intended(route('home', absolute: false))->with("success", "login successful, Welcome" . Auth::user()->name);
+           
+            if(Auth::user()->role == "user"){
+                return redirect()->intended(route('home', absolute: false))->with("success", "User registration successful");
             }
 
-            DB::commit();
-
+            
         } catch (Exception $e) {
 
             DB::rollback();
 
-            return response()->json([
-                'message' => 'An error occurred during the operation.',
-                'error' => $e->getMessage(),
-            ], 500);
+            return back()->withErrors($e->getMessage());
         }
     }
 }

@@ -18,12 +18,12 @@ return new class extends Migration
             $table->string("state");
             $table->string("zone");
             $table->string("city");
-            $table->string("address");
+            $table->string("address")->nullable();
             $table->string("phone_no");
             // $table->string("postal_code");
             $table->string('landmark')->nullable(); // landmark or landmark
-            $table->text("description");
-            $table->json("extra");
+            $table->text("description")->nullable();
+            $table->json("extra")->nullable();
             $table->timestamps();
 
 

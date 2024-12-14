@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -19,8 +20,24 @@ class HomeController extends Controller
         ]);
     }
 
-    public function Filter()
+    public function Filter(Request $request)
     {
-        return view('components/filter');
+
+        $category = $request->has('category') ? $request->category : null;
+        $brand = $request->has('brand')? $request->brand : null;
+        $minPrice = $request->has('minPrice')? $request->minPrice : null;
+        $maxPrice = $request->has('maxPrice')? $request->maxPrice : null;
+        return view('pages/filter', [
+           "category" =>$category, 
+           "brand"=>$brand, 
+           "minPrice"=>$minPrice, 
+           "maxPrice"=>$maxPrice, 
+        ]);
     }
+
+    // public function productDetailes(Product $id){
+
+    //     return view("pages/detailes");
+
+    // }
 }
