@@ -15,9 +15,9 @@ class Filter extends Component
      * Create a new component instance.
      */
 
-    public $selectedBrands = [], $selectedCategories = [], $maxPrice = 50000, $minPrice = 300;
+    public $selectedBrands = [], $selectedCategories = [], $maxPrice = 50000, $minPrice = 300,$search=null;
 
-    public function __construct($category = null, $brand = null, $minPrice=null,$maxPrice=null)
+    public function __construct($category = null, $brand = null, $minPrice=null,$maxPrice=null ,$search = null)
     {
         //
         if ($category !== null) {
@@ -31,6 +31,9 @@ class Filter extends Component
         }
         if ($minPrice !== null) {
             $this->minPrice = $minPrice;
+        }
+        if ($search !== null) {
+            $this->search = $search;
         }
     }
 
@@ -48,6 +51,7 @@ class Filter extends Component
     }
     public function products()
     {
+        // dd($this->search);
         $product = Product::query();
         $product->where(function ($query) {
             $query->when(!empty($this->selectedBrands), function ($query) {
@@ -56,9 +60,12 @@ class Filter extends Component
                 $query->whereIn("category_id", $this->selectedCategories);
             })->when($this->maxPrice || $this->minPrice, function ($query) {
                 $query->whereBetween("price", [$this->minPrice, $this->maxPrice]);
+            })->when($this->search, function ($query) {
+                $query->Where('name', 'like', '%' . $this->search . '%');
             });
         });
 
+        // orWhere('email', 'like', '%' . $searchQuery . '%')
         $product =  $product->with(['category', 'brand'])->get();
         return $product;
     }

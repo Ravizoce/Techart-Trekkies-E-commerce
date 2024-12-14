@@ -36,11 +36,7 @@ class ProfileController extends Controller
     }
     public function address()
     {
-        $route = 'address.store';
-        return view("form/addressform", [
-            'address_id'=>null,
-            'route' => $route
-        ]);
+        return view("form/addaddress");
     }
     public function updateAddressindex(Address $address)
     {
@@ -55,6 +51,7 @@ class ProfileController extends Controller
     }
     public function createAddress(Request $request)
     {
+
         $request->validate([
             'address_type' => 'required|in:home,work',
             'state' => 'required|string|max:255',
@@ -63,14 +60,15 @@ class ProfileController extends Controller
             'phone_no' => 'required|string|min:7|max:15|regex:/^[0-9\-]+$/',
             'landmark' => 'nullable|string|max:255',
         ]);
+
         Address::create([
             "user_id" => Auth::user()->id,
             "address_type" => $request->address_type,
-            "state" => $request->address_type,
-            "zone" => $request->address_type,
-            "city" => $request->address_type,
-            "phone_no" => $request->address_type,
-            "landmark" => $request->address_type,
+            "state" => $request->state,
+            "zone" => $request->zone,
+            "city" => $request->city,
+            "phone_no" => $request->phone_no,
+            "landmark" => $request->landmark,
         ]);
 
         return redirect()->route('profile')->with("message", "Address added successfully");
@@ -87,6 +85,7 @@ class ProfileController extends Controller
         ]);
 
         $address->update($validated);
+        return redirect()->route('profile')->with("message", "Address updated successfully");   
     }
     public function deleteAddress(Address $address){
         $address->delete();

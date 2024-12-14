@@ -64,3 +64,12 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+### About project 
+## Home
+contains product list , categorised by category, random 3 category are shown every time page is refreshed
+
+
+
+

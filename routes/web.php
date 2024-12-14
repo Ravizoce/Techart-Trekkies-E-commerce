@@ -16,6 +16,7 @@ Route::middleware('guest')->group(function () {
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+// Route::get('/search', [HomeController::class, 'search'])->name('search');
 Route::post('/filter', [HomeController::class, 'filter'])->name('filter');
 Route::get('/filter', [HomeController::class, 'filter'])->name('vueall');
 // Route::get('/details/{id}',[HomeController::class,"productDetailes"])->name("detailes");
@@ -29,7 +30,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('updateProfile/{user}',[ProfileController::class,"update"])->name("updateProfile");
     Route::delete('deleteprofile/{user}',[ProfileController::class,"delete"])->name("deleteProfile");
     Route::get('add/address',[ProfileController::class,"address"])->name("addAddress");
-    Route::post('add/address',[ProfileController::class,"createAddress"])->name("address.store");
+    Route::post('add/address',[ProfileController::class,"createAddress"])->name("addressstore");
     Route::get('update/address/{address}',[ProfileController::class,"updateAddressindex"])->name("updateAddress");
     Route::post('update/address/{address}',[ProfileController::class,"updateAddress"])->name("address.update");
     Route::delete('delete/address/{address}',[ProfileController::class,"deleteAddress"])->name("deleteAddress");
