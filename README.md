@@ -96,8 +96,7 @@ from nev menu we can acces login and from login we can access sign up,
 
 form nev bar after sin in , a profile option is added which is dropdown from bootstrap with option profile and log out
 
-profile contain user info , from here you can ad Addresseses , change user info and delete account
-
+profile contain user info , from here you can ad Addresseses , change user info and delete account and change profile.
 
 
 
